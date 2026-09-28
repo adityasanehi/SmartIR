@@ -22,7 +22,7 @@ from homeassistant.core import callback
 from homeassistant.helpers.event import async_track_state_change_event
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.restore_state import RestoreEntity
-from . import COMPONENT_ABS_DIR, Helper
+from . import CODES_URL, COMPONENT_ABS_DIR, Helper
 from .controller import get_controller
 
 _LOGGER = logging.getLogger(__name__)
@@ -80,14 +80,8 @@ async def async_setup_platform(
         )
 
         try:
-            codes_source = (
-                "https://raw.githubusercontent.com/"
-                "smartHomeHub/SmartIR/master/"
-                "codes/light/{}.json"
-            )
-
             await Helper.downloader(
-                codes_source.format(device_code),
+                CODES_URL.format("light", device_code),
                 device_json_path,
             )
         except Exception:

@@ -16,7 +16,7 @@ from homeassistant.core import Event, EventStateChangedData, callback
 from homeassistant.helpers.event import async_track_state_change, async_track_state_change_event
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.restore_state import RestoreEntity
-from . import COMPONENT_ABS_DIR, Helper
+from . import CODES_URL, COMPONENT_ABS_DIR, Helper
 from .controller import get_controller
 
 _LOGGER = logging.getLogger(__name__)
@@ -70,11 +70,8 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
                         "try to download it from the GitHub repo.")
 
         try:
-            codes_source = ("https://raw.githubusercontent.com/"
-                            "smartHomeHub/SmartIR/master/"
-                            "codes/climate/{}.json")
-
-            await Helper.downloader(codes_source.format(device_code), device_json_path)
+            await Helper.downloader(
+                CODES_URL.format("climate", device_code), device_json_path)
         except Exception:
             _LOGGER.error("There was an error while downloading the device Json file. " \
                           "Please check your internet connection or if the device code " \

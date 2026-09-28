@@ -20,14 +20,14 @@ _LOGGER = logging.getLogger(__name__)
 
 DOMAIN = 'smartir'
 VERSION = '1.18.1'
+RAW_REPOSITORY_URL = "https://raw.githubusercontent.com/adityasanehi/SmartIR"
 MANIFEST_URL = (
-    "https://raw.githubusercontent.com/"
-    "smartHomeHub/SmartIR/{}/"
+    RAW_REPOSITORY_URL + "/{}/"
     "custom_components/smartir/manifest.json")
 REMOTE_BASE_URL = (
-    "https://raw.githubusercontent.com/"
-    "smartHomeHub/SmartIR/{}/"
+    RAW_REPOSITORY_URL + "/{}/"
     "custom_components/smartir/")
+CODES_URL = RAW_REPOSITORY_URL + "/master/codes/{}/{}.json"
 COMPONENT_ABS_DIR = os.path.dirname(
     os.path.abspath(__file__))
 
